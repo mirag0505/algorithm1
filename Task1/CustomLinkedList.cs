@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AlgorithmsDataStructures;
 
 namespace AlgorithmsDataStructures
 {
@@ -43,7 +42,7 @@ namespace AlgorithmsDataStructures
 
         public List<Node> FindAll(int _value)
         {
-            List<Node> nodes = new();
+            List<Node> nodes = new List<Node>();
             // здесь будет ваш код поиска всех узлов по заданному значению
             Node node = head;
             while (node != null)
@@ -53,19 +52,6 @@ namespace AlgorithmsDataStructures
             }
 
             return nodes;
-        }
-        public void ShowAllValue()
-        {
-            // здесь будет ваш код поиска всех узлов по заданному значению
-            Node node = head;
-            int count = 0;
-            while (node != null)
-            {
-                count++;
-                Console.WriteLine("Found node at index " + count + " with value: " + node.value);
-                node = node.next;
-            }
-            Console.WriteLine("Finish + " + head + "= head | tail =" + tail);
         }
 
         public bool Remove(int _value)
@@ -193,25 +179,5 @@ namespace AlgorithmsDataStructures
             }
         }
 
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        LinkedList list = new();
-
-        var node1 = new Node(1);
-        var node2 = new Node(2);
-        var node5 = new Node(5);
-        list.AddInTail(node1);
-        list.AddInTail(new Node(3));
-        list.AddInTail(new Node(4));
-        list.AddInTail(node5);
-
-        list.ShowAllValue();
-        list.InsertAfter(node5, node2);
-        list.ShowAllValue();
     }
 }
