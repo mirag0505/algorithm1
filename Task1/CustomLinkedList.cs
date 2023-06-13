@@ -158,6 +158,12 @@ namespace AlgorithmsDataStructures
             {
                 head = _nodeToInsert;
                 head.next = node;
+
+                int lengthList = Count();
+                if (lengthList == 1)
+                {
+                    tail = _nodeToInsert;
+                }
             }
             else
             {

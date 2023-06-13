@@ -580,4 +580,26 @@ public class UnitTest1
         Assert.Equal(list1.head, node1);
         Assert.Equal(list1.tail, node4);
     }
+
+    [Fact]
+    public void InsertAfter_Test_null_empty_list()
+    {
+        var list1 = new LinkedList();
+        var list2 = new LinkedList();
+
+        // Act
+        var node1 = new Node(1);
+        var node11 = new Node(1);
+
+        // Act
+        list2.AddInTail(node11);
+
+
+        // Assert
+        list1.InsertAfter(null, node1);
+        Assert.True(AreEqual(list1, list2));
+
+        Assert.Equal(list1.head, node1);
+        Assert.Equal(list1.tail, node1);
+    }
 }
