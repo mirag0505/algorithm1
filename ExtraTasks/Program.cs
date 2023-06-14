@@ -16,13 +16,8 @@ namespace ExtraTask
                 Node node1 = _list1.head;
                 Node node2 = _list2.head;
 
-                while (node1 != null || node2 != null)
+                while (node1 != null)
                 {
-                    if (node1 == null || node2 == null)
-                    {
-                        break;
-                    }
-
                     resultList.AddInTail(new Node(node1.value + node2.value));
 
                     node1 = node1.next;
