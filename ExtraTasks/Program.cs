@@ -7,7 +7,7 @@ namespace ExtraTask
         public static LinkedList SumMatchingElementsInEqualLists(LinkedList _list1, LinkedList _list2)
         {
             int lengthList1 = _list1.Count();
-            int lengthList2 = _list1.Count();
+            int lengthList2 = _list2.Count();
 
             LinkedList resultList = new LinkedList();
 
@@ -23,11 +23,6 @@ namespace ExtraTask
                         break;
                     }
 
-                    if (node1.value != node2.value)
-                    {
-                        break;
-                    }
-
                     resultList.AddInTail(new Node(node1.value + node2.value));
 
                     node1 = node1.next;
@@ -37,13 +32,5 @@ namespace ExtraTask
 
             return resultList;
         }
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-
     }
 }
