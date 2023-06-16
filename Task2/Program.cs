@@ -22,6 +22,7 @@ namespace AlgorithmsDataStructures
     {
         public Node head;
         public Node tail;
+        public int count;
 
         public LinkedList2()
         {
@@ -43,6 +44,7 @@ namespace AlgorithmsDataStructures
                 _item.prev = tail;
             }
             tail = _item;
+            count++;
         }
 
         public Node Find(int _value)
@@ -80,7 +82,7 @@ namespace AlgorithmsDataStructures
 
                 if (node.value == _value)
                 {
-                    if (Count() == 1)
+                    if (count == 1)
                     {
                         head = null;
                         tail = null;
@@ -102,6 +104,7 @@ namespace AlgorithmsDataStructures
                         nextNode.prev = prevNode;
                     }
 
+                    count--;
                     return true;
                 };
 
@@ -121,7 +124,7 @@ namespace AlgorithmsDataStructures
 
                 if (node.value == _value)
                 {
-                    if (Count() == 1)
+                    if (count == 1)
                     {
                         head = null;
                         tail = null;
@@ -141,7 +144,7 @@ namespace AlgorithmsDataStructures
                         prevNode.next = nextNode;
                         nextNode.prev = prevNode;
                     }
-
+                    count--;
                 }
 
                 node = node.next;
@@ -152,19 +155,11 @@ namespace AlgorithmsDataStructures
         {
             head = null;
             tail = null;
+            count = 0;
         }
 
         public int Count()
         {
-            Node node = head;
-            int count = 0;
-
-            while (node != null)
-            {
-                count++;
-                node = node.next;
-            }
-
             return count;
         }
 
@@ -176,13 +171,14 @@ namespace AlgorithmsDataStructures
             {
                 head = _nodeToInsert;
                 head.next = node;
+                count++;
 
                 if (node != null)
                 {
                     node.prev = _nodeToInsert;
                 }
 
-                if (Count() == 1)
+                if (count == 1)
                 {
                     tail = _nodeToInsert;
                 }
@@ -207,6 +203,7 @@ namespace AlgorithmsDataStructures
             _nodeToInsert.prev = node;
             _nodeToInsert.next = nextNode;
             node.next = _nodeToInsert;
+            count++;
         }
     }
 }
