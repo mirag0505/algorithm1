@@ -208,14 +208,13 @@ public class UnitTest1
         var node2 = new Node(2);
 
         var node11 = new Node(1);
-        var node12 = new Node(2);
-
         // Act
 
         list1.AddInTail(node1);
         list1.AddInTail(node2);
 
         list2.AddInTail(node11);
+
         // Assert
         bool result = list1.Remove(2);
         Assert.True(result);

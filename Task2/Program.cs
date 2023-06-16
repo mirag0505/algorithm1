@@ -186,31 +186,27 @@ namespace AlgorithmsDataStructures
                 {
                     tail = _nodeToInsert;
                 }
+
+                return;
+            }
+
+
+            node = _nodeAfter;
+            Node nextNode = node.next;
+
+
+            if (nextNode == null)
+            {
+                tail = _nodeToInsert;
             }
             else
             {
-                while (node != null)
-                {
-                    Node nextNode = node.next;
-                    if (node == _nodeAfter)
-                    {
-                        if (nextNode == null)
-                        {
-                            tail = _nodeToInsert;
-                        }
-                        else
-                        {
-                            nextNode.prev = _nodeToInsert;
-                        }
-                        _nodeToInsert.prev = node;
-                        _nodeToInsert.next = nextNode;
-                        node.next = _nodeToInsert;
-
-                        break;
-                    }
-                    node = node.next;
-                }
+                nextNode.prev = _nodeToInsert;
             }
+
+            _nodeToInsert.prev = node;
+            _nodeToInsert.next = nextNode;
+            node.next = _nodeToInsert;
         }
     }
 }
