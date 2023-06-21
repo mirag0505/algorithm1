@@ -83,7 +83,7 @@ namespace AlgorithmsDataStructures
 
         public void Remove(int index)
         {
-            if (index > count || index < 0) throw new ArgumentOutOfRangeException("Недопустимый индекс массива");
+            if (index >= count || index < 0) throw new ArgumentOutOfRangeException("Недопустимый индекс массива");
 
             if (count <= (int)(capacity / 2))
             {

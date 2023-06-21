@@ -299,4 +299,11 @@ public class UnitTest3
         var dynaArray = new DynArray<int>();
         Assert.Throws<ArgumentOutOfRangeException>(() => dynaArray.Remove(34));
     }
+
+    [Fact]
+    public void Test_Remove_exeption_empty_array()
+    {
+        var dynaArray = new DynArray<int>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => dynaArray.Remove(0));
+    }
 }
