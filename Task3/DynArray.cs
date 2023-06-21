@@ -43,15 +43,9 @@ namespace AlgorithmsDataStructures
 
         public T GetItem(int index)
         {
-            try
-            {
-                return array[index];
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
-                return default(T);
-            }
+            if (index > count || index < 0) throw new ArgumentOutOfRangeException("Недопустимый индекс массива");
+
+            return array[index];
         }
 
         public void Append(T itm)
@@ -67,6 +61,8 @@ namespace AlgorithmsDataStructures
 
         public void Insert(T itm, int index)
         {
+            if (index > count || index < 0) throw new ArgumentOutOfRangeException("Недопустимый индекс массива");
+
             if (count == capacity || index == capacity)
             {
                 capacity *= 2;
@@ -81,20 +77,14 @@ namespace AlgorithmsDataStructures
                 }
             }
 
-            try
-            {
-                array[index] = itm;
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
-                return;
-            }
+            array[index] = itm;
             count++;
         }
 
         public void Remove(int index)
         {
+            if (index > count || index < 0) throw new ArgumentOutOfRangeException("Недопустимый индекс массива");
+
             if (count <= (int)(capacity / 2))
             {
                 capacity = (int)(capacity / 1.5);
@@ -106,15 +96,7 @@ namespace AlgorithmsDataStructures
 
             for (int i = index; i < count; i++)
             {
-                try
-                {
-                    array[i] = array[i + 1];
-                }
-                catch (IndexOutOfRangeException ex)
-                {
-                    Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
-                    return;
-                }
+                array[i] = array[i + 1];
             }
             count--;
         }

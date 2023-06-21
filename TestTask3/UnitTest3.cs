@@ -261,35 +261,42 @@ public class UnitTest3
         Assert.Equal(dynaArray.capacity, 21);
         Assert.Equal(dynaArray.array.Length, 21);
 
-        dynaArray.Remove(15);
         dynaArray.Remove(14);
         dynaArray.Remove(13);
         dynaArray.Remove(12);
         dynaArray.Remove(11);
         dynaArray.Remove(10);
+        dynaArray.Remove(9);
 
         var result3 = dynaArray.GetItem(0);
-        var result4 = dynaArray.GetItem(9);
+        var result4 = dynaArray.GetItem(8);
 
         Assert.Equal(result3, 1);
-        Assert.Equal(result4, 10);
+        Assert.Equal(result4, 9);
 
         Assert.Equal(dynaArray.count, 9);
         Assert.Equal(dynaArray.capacity, 16);
         Assert.Equal(dynaArray.array.Length, 16);
     }
 
-    // [Fact]
-    // public void Test_Insert_exeption()
-    // {
-    //     var dynaArray = new DynArray<int>();
-    //     Assert.Throws<IndexOutOfRangeException>(() => dynaArray.Insert(1, 34));
-    // }
+    [Fact]
+    public void Test_GetItem_exeption()
+    {
+        var dynaArray = new DynArray<int>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => dynaArray.GetItem(34));
+    }
 
-    // [Fact]
-    // public void Test_Remove_exeption()
-    // {
-    //     var dynaArray = new DynArray<int>();
-    //     Assert.Throws<IndexOutOfRangeException>(() => dynaArray.Remove(34));
-    // }
+    [Fact]
+    public void Test_Insert_exeption()
+    {
+        var dynaArray = new DynArray<int>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => dynaArray.Insert(1, 34));
+    }
+
+    [Fact]
+    public void Test_Remove_exeption()
+    {
+        var dynaArray = new DynArray<int>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => dynaArray.Remove(34));
+    }
 }

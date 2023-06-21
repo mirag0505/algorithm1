@@ -7,6 +7,5 @@ class Program
     {
         var dynaArray = new DynArray<int>();
         dynaArray.Insert(1, 34);
-
     }
 }
