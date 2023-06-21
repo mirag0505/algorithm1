@@ -9,37 +9,114 @@ namespace AlgorithmsDataStructures
         public T[] array;
         public int count;
         public int capacity;
+        readonly int MIN_RANGE = 16;
 
         public DynArray()
         {
             count = 0;
-            MakeArray(16);
+            MakeArray(MIN_RANGE);
         }
 
         public void MakeArray(int new_capacity)
         {
-            // ваш код
+            capacity = new_capacity;
+
+            if (count == 0)
+            {
+                array = new T[new_capacity]; return;
+            }
+
+            T[] newArray = new T[new_capacity];
+
+            if (array.Length >= newArray.Length)
+            {
+                Array.Copy(array, newArray, newArray.Length);
+            }
+            else
+            {
+                Array.Copy(array, newArray, array.Length);
+            }
+
+
+            array = newArray;
         }
 
         public T GetItem(int index)
         {
-            // ваш код
-            return default(T);
+            try
+            {
+                return array[index];
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
+                return default(T);
+            }
         }
 
         public void Append(T itm)
         {
-            // ваш код
+            if (count == capacity)
+            {
+                capacity = capacity * 2;
+                MakeArray(capacity);
+            }
+            array[count] = itm;
+            count++;
         }
 
         public void Insert(T itm, int index)
         {
-            // ваш код
+            if (count == capacity || index == capacity)
+            {
+                capacity *= 2;
+                MakeArray(capacity);
+            }
+
+            for (int i = capacity; i >= index; i--)
+            {
+                if (i + 1 < capacity)
+                {
+                    array[i + 1] = array[i];
+                }
+            }
+
+            try
+            {
+                array[index] = itm;
+                count++;
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
+                return;
+            }
         }
 
         public void Remove(int index)
         {
-            // ваш код
+            if (count <= (int)(capacity / 2))
+            {
+                capacity = (int)(capacity / 1.5);
+
+                if (capacity < MIN_RANGE) capacity = MIN_RANGE;
+
+                MakeArray(capacity);
+            }
+
+            for (int i = index; i < count; i++)
+            {
+                try
+                {
+                    array[i] = array[i + 1];
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
+                    return;
+                }
+            }
+            count--;
         }
 
     }

@@ -1,9 +1,12 @@
 ﻿using AlgorithmsDataStructures;
 
+
 class Program
 {
     static void Main(string[] args)
     {
-        var array = new DynArray();
+        var dynaArray = new DynArray<int>();
+        dynaArray.Insert(1, 34);
+
     }
 }
