@@ -84,13 +84,13 @@ namespace AlgorithmsDataStructures
             try
             {
                 array[index] = itm;
-                count++;
             }
             catch (IndexOutOfRangeException ex)
             {
                 Console.WriteLine("Вы попытались обратиться к элементу за пределами массива!" + ex.Message);
                 return;
             }
+            count++;
         }
 
         public void Remove(int index)
