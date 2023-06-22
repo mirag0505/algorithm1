@@ -1,6 +1,7 @@
 namespace TestTask4;
 
 using AlgorithmsDataStructures;
+using ExtraFunction;
 
 public class TestTask4
 {
@@ -183,47 +184,16 @@ public class TestTask4
         Assert.Equal(default, stackObjects.Pop());
     }
 
-    public static bool IsBalansed(string str)
-    {
-        if (str == null) return false;
-        if (str.Length % 2 != 0) return false;
-
-        var stack = new AlgorithmsDataStructures.Stack<char>();
-        char[] items = str.ToCharArray();
-
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i] == '(')
-            {
-                stack.Push(items[i]);
-                continue;
-            }
-
-            if (items[i] == ')')
-            {
-
-                var popedValue = stack.Pop();
-
-                if (popedValue == items[i] || popedValue == '\0')
-                {
-                    return false;
-                }
-            }
-
-        }
-        return true;
-    }
-
     [Fact]
     public void Test_IsBalansed_function()
     {
-        Assert.False(IsBalansed(null));
+        Assert.False(ExtraFunction.IsBalansed(null));
 
-        Assert.True(IsBalansed("(()((())()))"));
-        Assert.True(IsBalansed("(()()(()"));
+        Assert.True(ExtraFunction.IsBalansed("(()((())()))"));
+        Assert.True(ExtraFunction.IsBalansed("(()()(()"));
 
-        Assert.False(IsBalansed("())("));
-        Assert.False(IsBalansed("))(("));
-        Assert.False(IsBalansed("((())"));
+        Assert.False(ExtraFunction.IsBalansed("())("));
+        Assert.False(ExtraFunction.IsBalansed("))(("));
+        Assert.False(ExtraFunction.IsBalansed("((())"));
     }
 }

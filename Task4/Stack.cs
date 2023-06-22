@@ -20,16 +20,12 @@ namespace AlgorithmsDataStructures
 
         public T Pop()
         {
-            try
-            {
-                var popedFirstElement = linkedList.First();
-                linkedList.RemoveFirst();
-                return popedFirstElement;
-            }
-            catch (InvalidOperationException)
-            {
-                return default(T);
-            }
+            if (linkedList.Count == 0) return default(T);
+
+
+            var popedFirstElement = linkedList.First();
+            linkedList.RemoveFirst();
+            return popedFirstElement;
         }
 
         public void Push(T val)
