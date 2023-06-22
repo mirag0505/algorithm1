@@ -52,7 +52,7 @@ namespace AlgorithmsDataStructures
         {
             if (count == capacity)
             {
-                capacity = capacity * 2;
+                capacity *= 2;
                 MakeArray(capacity);
             }
             array[count] = itm;
