@@ -34,8 +34,8 @@ public class UnitTest
         Assert.Equal(list.head.next, list.tail);
         Assert.Equal(list.tail.prev, list.head);
 
-        Assert.True(list.head.isDummy);
-        Assert.True(list.tail.isDummy);
+        Assert.True(list.head is DummyNode);
+        Assert.True(list.head is DummyNode);
     }
 
     [Fact]
@@ -48,7 +48,7 @@ public class UnitTest
 
         var node = new Node(5);
 
-        Assert.False(node.isDummy);
+        Assert.False(node is DummyNode);
     }
 
     [Fact]
@@ -179,8 +179,8 @@ public class UnitTest
         bool result = list1.Remove(1);
         Assert.True(result);
         Assert.Null(list1.Find(1));
-        Assert.Equal(node2.prev.isDummy, true);
-        Assert.Equal(node2.next.isDummy, true);
+        Assert.Equal(node2.prev is DummyNode, true);
+        Assert.Equal(node2.next is DummyNode, true);
         Assert.Equal(node2.value, 2);
 
         Assert.True(AreEqual(list1, list2));

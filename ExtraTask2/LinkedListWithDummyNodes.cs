@@ -9,29 +9,36 @@ namespace AlgorithmsDataStructures
     {
         public int value;
         public Node next, prev;
-        public bool isDummy = false;
 
-        public Node(int? _value)
+        public Node(int _value)
         {
 
             next = null;
             prev = null;
+            value = _value;
+        }
+    }
 
-            if (_value == null) isDummy = true;
-            if (_value != null) value = (int)_value;
+    public class DummyNode : Node
+    {
+        new private int value;
+        public DummyNode() : base(0)
+        {
+            next = null;
+            prev = null;
         }
     }
 
     public class LinkedListWithDummyNodes
     {
-        public Node head;
-        public Node tail;
+        public DummyNode head;
+        public DummyNode tail;
         public int count;
 
         public LinkedListWithDummyNodes()
         {
-            Node dummyHeadNode = new Node(null);
-            Node dummyTailNode = new Node(null);
+            DummyNode dummyHeadNode = new DummyNode();
+            DummyNode dummyTailNode = new DummyNode();
 
             head = dummyHeadNode;
             tail = dummyTailNode;
@@ -56,7 +63,7 @@ namespace AlgorithmsDataStructures
             Node node = head;
             while (node != null)
             {
-                if (node.value == _value && node.isDummy == false) return node;
+                if (node.GetType() == typeof(Node) && node.value == _value) return node;
                 node = node.next;
             }
             return null;
@@ -68,7 +75,7 @@ namespace AlgorithmsDataStructures
             Node node = head;
             while (node != null)
             {
-                if (node.value == _value && node.isDummy == false) nodes.Add(node);
+                if (node.GetType() == typeof(Node) && node.value == _value) nodes.Add(node);
                 node = node.next;
             }
 
@@ -83,7 +90,7 @@ namespace AlgorithmsDataStructures
                 Node prevNode = node.prev;
                 Node nextNode = node.next;
 
-                if (node.value == _value && node.isDummy == false)
+                if (node.GetType() == typeof(Node) && node.value == _value)
                 {
                     prevNode.next = nextNode;
                     nextNode.prev = prevNode;
@@ -106,9 +113,8 @@ namespace AlgorithmsDataStructures
                 Node prevNode = node.prev;
                 Node nextNode = node.next;
 
-                if (node.value == _value)
+                if (node.GetType() == typeof(Node) && node.value == _value)
                 {
-
                     prevNode.next = nextNode;
                     nextNode.prev = prevNode;
                     count--;
