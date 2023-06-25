@@ -2,39 +2,38 @@ using AlgorithmsDataStructures;
 namespace TestExtraTasks2;
 public class UnitTest
 {
-    public static bool AreEqual(LinkedListWithDummyNodes list1, LinkedListWithDummyNodes list2)
-    {
-        Node node1 = list1.head;
-        Node node2 = list2.head;
+    // public static bool AreEqual(LinkedListWithDummyNodes list1, LinkedListWithDummyNodes list2)
+    // {
+    //     Node node1 = list1.head;
+    //     Node node2 = list2.head;
 
-        while (node1 != null || node2 != null)
-        {
-            if (node1 == null || node2 == null)
-            {
-                return false;
-            }
+    //     while (node1 != null || node2 != null)
+    //     {
+    //         if (node1 == null || node2 == null)
+    //         {
+    //             return false;
+    //         }
 
-            if (node1.value != node2.value)
-            {
-                return false;
-            }
+    //         if (node1.value != node2.value)
+    //         {
+    //             return false;
+    //         }
 
-            node1 = node1.next;
-            node2 = node2.next;
-        }
+    //         node1 = node1.next;
+    //         node2 = node2.next;
+    //     }
 
-        return true;
-    }
+    //     return true;
+    // }
 
     [Fact]
     public void CreatedLinkedList()
     {
         var list = new LinkedListWithDummyNodes();
 
-        Assert.Equal(list.head.next, list.tail);
-        Assert.Equal(list.tail.prev, list.head);
+        Assert.Equal(list.head.next, list.head);
+        Assert.Equal(list.head.prev, list.head);
 
-        Assert.True(list.head is DummyNode);
         Assert.True(list.head is DummyNode);
     }
 
@@ -43,8 +42,8 @@ public class UnitTest
     {
         var list = new LinkedListWithDummyNodes();
 
-        Assert.Equal(list.head.next, list.tail);
-        Assert.Equal(list.tail.prev, list.head);
+        Assert.Equal(list.head.next, list.head);
+        Assert.Equal(list.head.prev, list.head);
 
         var node = new Node(5);
 
@@ -61,11 +60,11 @@ public class UnitTest
 
         list.AddInTail(node1);
         Assert.Equal(list.head.next, node1);
-        Assert.Equal(list.tail.prev, node1);
+        Assert.Equal(list.head.prev, node1);
 
         list.AddInTail(node2);
         Assert.Equal(list.head.next, node1);
-        Assert.Equal(list.tail.prev, node2);
+        Assert.Equal(list.head.prev, node2);
 
         Assert.Equal(node1.next, node2);
         Assert.Equal(node2.prev, node1);
@@ -74,7 +73,7 @@ public class UnitTest
     [Fact]
     public void Find_Test()
     {
-        var list = new LinkedListWithDummyNodes();
+        LinkedListWithDummyNodes list = new LinkedListWithDummyNodes();
 
         // Act
         list.AddInTail(new Node(1));
@@ -95,7 +94,6 @@ public class UnitTest
     {
         var list = new LinkedListWithDummyNodes();
 
-        // Act
         list.AddInTail(new Node(1));
         list.AddInTail(new Node(2));
         list.AddInTail(new Node(3));
@@ -104,7 +102,6 @@ public class UnitTest
         var findedNode1 = list.Find(6);
         var findedNode2 = list.Find(0);
 
-        // Assert
         Assert.Null(findedNode1);
         Assert.Null(findedNode2);
     }
@@ -139,11 +136,9 @@ public class UnitTest
         var list1 = new LinkedListWithDummyNodes();
         var list2 = new LinkedListWithDummyNodes();
 
-        // Assert
         bool result = list1.Remove(1);
         Assert.False(result);
         Assert.Null(list1.Find(1));
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -155,12 +150,9 @@ public class UnitTest
         var node1 = new Node(1);
         list1.AddInTail(node1);
 
-        // Assert
         bool result = list1.Remove(1);
         Assert.True(result);
         Assert.Null(list1.Find(1));
-
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -183,7 +175,6 @@ public class UnitTest
         Assert.Equal(node2.next is DummyNode, true);
         Assert.Equal(node2.value, 2);
 
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -204,8 +195,6 @@ public class UnitTest
         Assert.Null(list1.Find(2));
 
         Assert.Equal(node1.value, 1);
-
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -233,10 +222,8 @@ public class UnitTest
         Assert.Equal(1, node1.value);
 
         Assert.Equal(node3.prev, node1);
-        Assert.Equal(list1.tail, node3.next);
+        Assert.Equal(list1.head, node3.next);
         Assert.Equal(3, node3.value);
-
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -248,7 +235,6 @@ public class UnitTest
         // Assert
         list1.RemoveAll(1);
         Assert.Null(list1.Find(1));
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -274,8 +260,7 @@ public class UnitTest
         list1.RemoveAll(4);
         Assert.Null(list1.Find(4));
         Assert.Equal(list1.head.next, node1);
-        Assert.Equal(list1.tail.prev, node3);
-        Assert.True(AreEqual(list1, list2));
+        Assert.Equal(list1.head.prev, node3);
     }
 
     [Fact]
@@ -293,10 +278,8 @@ public class UnitTest
         // Assert
         list1.RemoveAll(1);
         Assert.Null(list1.Find(1));
-        Assert.Equal(list1.head.next, list1.tail);
-        Assert.Equal(list1.tail.prev, list1.head);
-
-        Assert.True(AreEqual(list1, list2));
+        Assert.Equal(list1.head.next, list1.head);
+        Assert.Equal(list1.head.prev, list1.head);
     }
 
     [Fact]
@@ -314,11 +297,9 @@ public class UnitTest
         list1.Clear();
 
         Assert.Null(list1.Find(1));
-        Assert.Equal(list1.head.next, list1.tail);
-        Assert.Equal(list1.tail.prev, list1.head);
+        Assert.Equal(list1.head.next, list1.head);
+        Assert.Equal(list1.head.prev, list1.head);
         Assert.Equal(0, list1.count);
-
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -342,15 +323,13 @@ public class UnitTest
         list1.RemoveAll(1);
         Assert.Null(list1.Find(1));
         Assert.Equal(list1.head.next, node2);
-        Assert.Equal(list1.tail.prev, node3);
+        Assert.Equal(list1.head.prev, node3);
 
         Assert.Equal(node2.next, node3);
         Assert.Equal(node2.value, 2);
 
         Assert.Equal(node3.prev, node2);
         Assert.Equal(node3.value, 3);
-
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -380,10 +359,8 @@ public class UnitTest
         Assert.Equal(node1.value, 1);
 
         Assert.Equal(node4.prev, node1);
-        Assert.Equal(node4.next, list1.tail);
+        Assert.Equal(node4.next, list1.head);
         Assert.Equal(node4.value, 3);
-
-        Assert.True(AreEqual(list1, list2));
     }
 
     [Fact]
@@ -411,10 +388,9 @@ public class UnitTest
 
         // Assert
         list1.InsertAfter(null, node1);
-        // Assert.True(AreEqual(list1, list2));
 
         Assert.Equal(list1.head.next, node1);
-        Assert.Equal(list1.tail.prev, node3);
+        Assert.Equal(list1.head.prev, node3);
 
         Assert.Equal(node1.next, node2);
 
@@ -454,10 +430,9 @@ public class UnitTest
 
         // Assert
         list1.InsertAfter(node1, node2);
-        Assert.True(AreEqual(list1, list2));
 
         Assert.Equal(list1.head.next, node1);
-        Assert.Equal(list1.tail.prev, node4);
+        Assert.Equal(list1.head.prev, node4);
 
         Assert.Equal(node1.next, node2);
         Assert.Equal(node1.prev, list1.head);
@@ -468,7 +443,7 @@ public class UnitTest
         Assert.Equal(node3.next, node4);
         Assert.Equal(node3.prev, node2);
 
-        Assert.Equal(node4.next, list1.tail);
+        Assert.Equal(node4.next, list1.head);
         Assert.Equal(node4.prev, node3);
     }
 
@@ -501,10 +476,9 @@ public class UnitTest
 
         // Assert
         list1.InsertAfter(node3, node4);
-        Assert.True(AreEqual(list1, list2));
 
         Assert.Equal(list1.head.next, node1);
-        Assert.Equal(list1.tail.prev, node4);
+        Assert.Equal(list1.head.prev, node4);
 
         Assert.Equal(node3.next, node4);
         Assert.Equal(node3.prev, node2);
@@ -527,10 +501,8 @@ public class UnitTest
 
         // Assert
         list1.InsertAfter(null, node1);
-        Assert.True(AreEqual(list1, list2));
 
-
-        Assert.Equal(node1.next, list1.tail);
+        Assert.Equal(node1.next, list1.head);
         Assert.Equal(node1.prev, list1.head);
     }
 }

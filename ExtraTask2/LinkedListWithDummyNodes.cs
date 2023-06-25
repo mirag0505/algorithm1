@@ -21,49 +21,41 @@ namespace AlgorithmsDataStructures
 
     public class DummyNode : Node
     {
-        new private int value;
-        public DummyNode() : base(0)
-        {
-            next = null;
-            prev = null;
-        }
+        public DummyNode() : base(0) { }
     }
 
     public class LinkedListWithDummyNodes
     {
         public DummyNode head;
-        public DummyNode tail;
         public int count;
 
         public LinkedListWithDummyNodes()
         {
-            DummyNode dummyHeadNode = new DummyNode();
-            DummyNode dummyTailNode = new DummyNode();
+            DummyNode dummyNode = new DummyNode();
 
-            head = dummyHeadNode;
-            tail = dummyTailNode;
+            head = dummyNode;
 
-            head.next = dummyTailNode;
-            tail.prev = dummyHeadNode;
+            head.next = head;
+            head.prev = head;
         }
 
         public void AddInTail(Node _item)
         {
-            _item.next = tail;
-            _item.prev = tail.prev;
+            _item.next = head;
+            _item.prev = head.prev;
 
-            tail.prev.next = _item;
-            tail.prev = _item;
+            head.prev.next = _item;
+            head.prev = _item;
 
             count++;
         }
 
         public Node Find(int _value)
         {
-            Node node = head;
-            while (node != null)
+            Node node = head.next;
+            while (node is not DummyNode)
             {
-                if (node.GetType() == typeof(Node) && node.value == _value) return node;
+                if (node.value == _value) return node;
                 node = node.next;
             }
             return null;
@@ -72,10 +64,11 @@ namespace AlgorithmsDataStructures
         public List<Node> FindAll(int _value)
         {
             List<Node> nodes = new List<Node>();
-            Node node = head;
-            while (node != null)
+
+            Node node = head.next;
+            while (node is not DummyNode)
             {
-                if (node.GetType() == typeof(Node) && node.value == _value) nodes.Add(node);
+                if (node.value == _value) nodes.Add(node);
                 node = node.next;
             }
 
@@ -84,13 +77,13 @@ namespace AlgorithmsDataStructures
 
         public bool Remove(int _value)
         {
-            Node node = head;
-            while (node != null)
+            Node node = head.next;
+            while (node is not DummyNode)
             {
                 Node prevNode = node.prev;
                 Node nextNode = node.next;
 
-                if (node.GetType() == typeof(Node) && node.value == _value)
+                if (node.value == _value)
                 {
                     prevNode.next = nextNode;
                     nextNode.prev = prevNode;
@@ -107,13 +100,13 @@ namespace AlgorithmsDataStructures
 
         public void RemoveAll(int _value)
         {
-            Node node = head;
-            while (node != null)
+            Node node = head.next;
+            while (node is not DummyNode)
             {
                 Node prevNode = node.prev;
                 Node nextNode = node.next;
 
-                if (node.GetType() == typeof(Node) && node.value == _value)
+                if (node.value == _value)
                 {
                     prevNode.next = nextNode;
                     nextNode.prev = prevNode;
@@ -126,8 +119,8 @@ namespace AlgorithmsDataStructures
 
         public void Clear()
         {
-            head.next = tail;
-            tail.prev = head;
+            head.next = head;
+            head.prev = head;
             count = 0;
         }
 
