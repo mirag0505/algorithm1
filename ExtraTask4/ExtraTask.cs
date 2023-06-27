@@ -6,40 +6,43 @@ namespace ExtraFunction4
     {
         public static string? PostfixNotationExecuter(string str)
         {
-            Stack<char> stack1 = new Stack<char>();
-            Stack<int> stack2 = new Stack<int>();
+            Stack<string> stack1 = new Stack<string>();
+            Stack<float> stack2 = new Stack<float>();
 
-            Dictionary<string, Func<int, int, int>> operations = new Dictionary<string, Func<int, int, int>>
+            Dictionary<string, Func<float, float, float>> operations = new Dictionary<string, Func<float, float, float>>
             {
                 { "+", (a, b) => a + b },
                 { "*", (a, b) => a * b },
+                { "/", (a, b) => b / a },
+                { "-", (a, b) => b - a },
             };
 
-            char[] items = str.ToArray();
+            string[] words = str.Split(" ");
 
-            for (int i = items.Length - 1; 0 <= i; i--)
+            for (int i = words.Length - 1; i >= 0; i--)
             {
-                if (items[i] != ' ') stack1.Push(items[i]);
+                stack1.Push(words[i]);
             }
 
             while (stack1.Count > 0)
             {
                 var value = stack1.Pop();
 
-                bool isNumber = int.TryParse(value.ToString(), out int number);
+                bool isNumber = float.TryParse(value, out float number);
                 if (isNumber)
                 {
                     stack2.Push(number);
                     continue;
                 }
 
-                if (operations.ContainsKey(value.ToString()) && stack2.Count <= 2)
+                if (operations.ContainsKey(value) && stack2.Count <= 2)
                 {
-                    int result = (int)operations[value.ToString()](stack2.Pop(), stack2.Pop());
+                    float result = operations[value](stack2.Pop(), stack2.Pop());
                     stack2.Push(result);
+                    continue;
                 }
 
-                if (value == '=')
+                if (value == "=")
                 {
                     return string.Join(", ", stack2.Reverse().ToArray());
                 }

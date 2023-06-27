@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var result = PostfixNotation.PostfixNotationExecuter("1 2 + 3 * =");
+        var result = PostfixNotation.PostfixNotationExecuter("10 2 - =");
         Console.Write(result);
     }
 }
