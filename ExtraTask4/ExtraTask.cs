@@ -37,7 +37,10 @@ namespace ExtraFunction4
 
                 if (operations.ContainsKey(value) && stack2.Count <= 2)
                 {
-                    float result = operations[value](stack2.Pop(), stack2.Pop());
+                    var first = stack2.Pop();
+                    var second = stack2.Pop();
+
+                    float result = operations[value](first, second);
                     stack2.Push(result);
                     continue;
                 }
