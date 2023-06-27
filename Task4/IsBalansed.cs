@@ -1,7 +1,4 @@
-﻿using System;
-using AlgorithmsDataStructures;
-
-namespace ExtraFunction
+﻿namespace ExtraFunctions
 {
     public class ExtraFunction
     {
@@ -11,24 +8,23 @@ namespace ExtraFunction
             if (str.Length % 2 != 0) return false;
 
             var stack = new AlgorithmsDataStructures.Stack<char>();
-            char[] items = str.ToCharArray();
+            char[] charArray = str.ToCharArray();
 
-            for (int i = 0; i < items.Length; i++)
+            foreach (char item in charArray)
             {
-                if (items[i] == '(')
+                if (item == '(')
                 {
-                    stack.Push(items[i]);
+                    stack.Push(item);
                     continue;
                 }
 
-                var popedValue = stack.Pop();
-
-                if (popedValue == items[i] || popedValue == '\0')
-                {
-                    return false;
-                }
-
+                char popedValue = stack.Pop();
+                if (popedValue == item) return false;
             }
+
+            int length = stack.Size();
+            if (length > 0) return false;
+
             return true;
         }
 

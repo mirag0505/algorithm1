@@ -1,7 +1,7 @@
 namespace TestTask4;
 
 using AlgorithmsDataStructures;
-using ExtraFunction;
+using ExtraFunctions;
 
 public class TestTask4
 {
@@ -189,11 +189,24 @@ public class TestTask4
     {
         Assert.False(ExtraFunction.IsBalansed(null));
 
+        Assert.True(ExtraFunction.IsBalansed("()"));
+        Assert.True(ExtraFunction.IsBalansed("(())"));
+        Assert.True(ExtraFunction.IsBalansed("(((()))())"));
         Assert.True(ExtraFunction.IsBalansed("(()((())()))"));
-        Assert.True(ExtraFunction.IsBalansed("(()()(()"));
+        Assert.True(ExtraFunction.IsBalansed("(()()(()))"));
+
+        Assert.False(ExtraFunction.IsBalansed("(()("));
+        Assert.False(ExtraFunction.IsBalansed("(()("));
+        Assert.False(ExtraFunction.IsBalansed("(()()(()"));
 
         Assert.False(ExtraFunction.IsBalansed("())("));
         Assert.False(ExtraFunction.IsBalansed("))(("));
+        Assert.False(ExtraFunction.IsBalansed("((())"));
+    }
+
+    [Fact]
+    public void Test_IsBalansed()
+    {
         Assert.False(ExtraFunction.IsBalansed("((())"));
     }
 }
