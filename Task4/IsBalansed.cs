@@ -21,15 +21,11 @@ namespace ExtraFunction
                     continue;
                 }
 
-                if (items[i] == ')')
+                var popedValue = stack.Pop();
+
+                if (popedValue == items[i] || popedValue == '\0')
                 {
-
-                    var popedValue = stack.Pop();
-
-                    if (popedValue == items[i] || popedValue == '\0')
-                    {
-                        return false;
-                    }
+                    return false;
                 }
 
             }
