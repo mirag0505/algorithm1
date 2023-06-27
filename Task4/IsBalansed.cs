@@ -22,12 +22,8 @@
                 if (popedValue == item) return false;
             }
 
-            int length = stack.Size();
-            if (length > 0) return false;
-
-            return true;
+            return stack.Size() == 0;
         }
-
     }
 
 }
