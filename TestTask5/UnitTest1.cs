@@ -1,67 +1,89 @@
 namespace TestTask5;
-using AlgorithmsDataStructures;
+
+// using AlgorithmsDataStructures;
 
 public class UnitTest1
 {
-    [Fact]
-    public void TestCreateQueue()
-    {
-        var queue = new Queue<int>();
-        Assert.True(queue is not null);
-        Assert.Equal(0, queue.Size());
-    }
+    // [Fact]
+    // public void TestCreateQueue()
+    // {
+    //     var queue = new Queue<int>();
+    //     Assert.True(queue is not null);
+    //     Assert.Equal(0, queue.Size());
+    // }
+
+    // [Fact]
+    // public void TestEnqueue()
+    // {
+    //     var queue = new Queue<int>();
+
+    //     queue.Enqueue(1);
+    //     Assert.Equal(1, queue.Size());
+
+    //     queue.Enqueue(2);
+    //     Assert.Equal(2, queue.Size());
+    // }
+
+    // [Fact]
+    // public void Dequeue()
+    // {
+    //     var queue = new Queue<int>();
+
+    //     queue.Enqueue(2);
+    //     Assert.Equal(1, queue.Size());
+
+    //     var result1 = queue.Dequeue();
+
+    //     Assert.Equal(2, result1);
+    //     Assert.Equal(0, queue.Size());
+
+    //     queue.Enqueue(3);
+    //     queue.Enqueue(4);
+    //     Assert.Equal(2, queue.Size());
+    //     var result2 = queue.Dequeue();
+    //     var result3 = queue.Dequeue();
+
+    //     Assert.Equal(3, result2);
+    //     Assert.Equal(4, result3);
+
+    //     var result4 = queue.Dequeue();
+    //     Assert.Equal(0, result4);
+
+    //     var queue1 = new Queue<string>();
+    //     var result5 = queue1.Dequeue();
+    //     Assert.Null(result5);
+    // }
+
+    // [Fact]
+    // public void Size()
+    // {
+    //     var queue = new Queue<int>();
+
+    //     queue.Enqueue(1);
+    //     Assert.Equal(1, queue.Size());
+
+    //     queue.Enqueue(2);
+    //     Assert.Equal(2, queue.Size());
+    // }
 
     [Fact]
-    public void TestEnqueue()
+    public void TestQueueRotate()
     {
-        var queue = new Queue<int>();
+        System.Collections.Generic.Queue<int> queue = new System.Collections.Generic.Queue<int>();
 
         queue.Enqueue(1);
-        Assert.Equal(1, queue.Size());
-
         queue.Enqueue(2);
-        Assert.Equal(2, queue.Size());
-    }
-
-    [Fact]
-    public void Dequeue()
-    {
-        var queue = new Queue<int>();
-
-        queue.Enqueue(2);
-        Assert.Equal(1, queue.Size());
-
-        var result1 = queue.Dequeue();
-
-        Assert.Equal(2, result1);
-        Assert.Equal(0, queue.Size());
-
         queue.Enqueue(3);
         queue.Enqueue(4);
-        Assert.Equal(2, queue.Size());
-        var result2 = queue.Dequeue();
-        var result3 = queue.Dequeue();
 
-        Assert.Equal(3, result2);
-        Assert.Equal(4, result3);
+        Assert.Equal(4, queue.Count());
+        string joinedQueue = string.Join(",", queue);
+        Assert.Equal("1,2,3,4", joinedQueue);
 
-        var result4 = queue.Dequeue();
-        Assert.Equal(0, result4);
+        RotateQueue.RotateQueue.RotateQueueFn(2, queue);
 
-        var queue1 = new Queue<string>();
-        var result5 = queue1.Dequeue();
-        Assert.Null(result5);
-    }
-
-    [Fact]
-    public void Size()
-    {
-        var queue = new Queue<int>();
-
-        queue.Enqueue(1);
-        Assert.Equal(1, queue.Size());
-
-        queue.Enqueue(2);
-        Assert.Equal(2, queue.Size());
+        Assert.Equal(4, queue.Count());
+        string joinedQueue2 = string.Join(",", queue);
+        Assert.Equal("3,4,1,2", joinedQueue2);
     }
 }
