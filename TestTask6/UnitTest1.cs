@@ -1,4 +1,5 @@
 using AlgorithmsDataStructures;
+
 namespace TestTask6;
 
 public class UnitTest1
@@ -105,5 +106,20 @@ public class UnitTest1
 
         deque.AddTail(2);
         Assert.Equal(2, deque.Size());
+    }
+
+    [Fact]
+    public void IsPalindromTest()
+    {
+        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("world"));
+        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("OpenAI"));
+        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("ChatGPT"));
+        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("example"));
+        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom(""));
+
+        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("madam"));
+        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("maam"));
+        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("racecar"));
+        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("wasitacaroracatisaw"));
     }
 }
