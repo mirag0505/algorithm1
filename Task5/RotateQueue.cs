@@ -4,7 +4,7 @@ namespace RotateQueue;
 
 public class RotateQueue
 {
-    public static void RotateQueueFn(int countToRotate, System.Collections.Generic.Queue<int> queue)
+    public static void RotateQueueFn(int countToRotate, System.Collections.Generic.Queue<object> queue)
     {
         for (int item = 0; item < countToRotate; item++)
         {

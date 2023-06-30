@@ -26,7 +26,7 @@ namespace AlgorithmsDataStructures
         {
             if (linkedList.Count == 0) return default(T);
 
-            T first = linkedList.First();
+            T first = linkedList.First.Value;
             linkedList.RemoveFirst();
             return first;
         }
@@ -35,7 +35,7 @@ namespace AlgorithmsDataStructures
         {
             if (linkedList.Count == 0) return default(T);
 
-            T last = linkedList.Last();
+            T last = linkedList.Last.Value;
             linkedList.RemoveLast();
             return last;
         }
