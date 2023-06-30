@@ -6,7 +6,7 @@ namespace AlgorithmsDataStructures
 
     class Deque<T>
     {
-        public LinkedList<T> linkedList;
+        private LinkedList<T> linkedList;
         public Deque()
         {
             linkedList = new LinkedList<T>();
