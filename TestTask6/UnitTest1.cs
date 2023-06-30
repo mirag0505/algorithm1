@@ -1,4 +1,5 @@
 using AlgorithmsDataStructures;
+using IsPalindrom;
 
 namespace TestTask6;
 
@@ -61,8 +62,8 @@ public class UnitTest1
         var result4 = deque.RemoveFront();
         Assert.Equal(0, result4);
 
-        var queue1 = new Deque<string>();
-        var result5 = queue1.RemoveFront();
+        var deque2 = new Deque<string>();
+        var result5 = deque2.RemoveFront();
         Assert.Null(result5);
     }
 
@@ -91,8 +92,8 @@ public class UnitTest1
         var result4 = deque.RemoveTail();
         Assert.Equal(0, result4);
 
-        var queue1 = new Deque<string>();
-        var result5 = queue1.RemoveTail();
+        var deque1 = new Deque<string>();
+        var result5 = deque1.RemoveTail();
         Assert.Null(result5);
     }
 
@@ -111,15 +112,15 @@ public class UnitTest1
     [Fact]
     public void IsPalindromTest()
     {
-        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("world"));
-        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("OpenAI"));
-        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("ChatGPT"));
-        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom("example"));
-        Assert.False(IsPalindrom.IsPalindromClass.IsPalindrom(""));
+        Assert.False(IsPalindromClass.IsPalindrom("world"));
+        Assert.False(IsPalindromClass.IsPalindrom("OpenAI"));
+        Assert.False(IsPalindromClass.IsPalindrom("ChatGPT"));
+        Assert.False(IsPalindromClass.IsPalindrom("example"));
+        Assert.False(IsPalindromClass.IsPalindrom(""));
 
-        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("madam"));
-        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("maam"));
-        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("racecar"));
-        Assert.True(IsPalindrom.IsPalindromClass.IsPalindrom("wasitacaroracatisaw"));
+        Assert.True(IsPalindromClass.IsPalindrom("madam"));
+        Assert.True(IsPalindromClass.IsPalindrom("maam"));
+        Assert.True(IsPalindromClass.IsPalindrom("racecar"));
+        Assert.True(IsPalindromClass.IsPalindrom("wasitacaroracatisaw"));
     }
 }
