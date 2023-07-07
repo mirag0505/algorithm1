@@ -122,46 +122,40 @@ namespace AlgorithmsDataStructures
 
         public void Delete(T val)
         {
-            Node<T> node = head;
+            Node<T> node = this.head;
+            Node<T> prevNode = this.head;
+
             while (node != null)
             {
-
-                if (_ascending && Compare(head.value, val) > 0) return;
-                if (_ascending && Compare(tail.value, val) < 0) return;
-                if (!_ascending && Compare(head.value, val) < 0) return;
-                if (!_ascending && Compare(tail.value, val) > 0) return;
-
-                Node<T> prevNode = node.prev;
-                Node<T> nextNode = node.next;
-
                 if (Compare(node.value, val) == 0)
                 {
-                    if (_size == 1)
+                    if (this.head == this.tail)
                     {
-                        head = null;
-                        tail = null;
+                        Clear(_ascending);
                     }
-                    else if (Compare(head.value, val) == 0)
+                    else if (this.head == node)
                     {
-                        nextNode.prev = null;
-                        head = nextNode;
+                        this.head = node.next;
+                        this.head.prev = null;
                     }
-                    else if (Compare(tail.value, val) == 0)
+                    else if (this.tail == node)
                     {
                         prevNode.next = null;
-                        tail = prevNode;
+                        this.tail = prevNode;
                     }
                     else
                     {
-                        prevNode.next = nextNode;
-                        nextNode.prev = prevNode;
+                        prevNode.next = node.next;
+                        node.next.prev = prevNode;
                     }
 
-                    _size--;
                     return;
-                };
-
-                node = node.next;
+                }
+                else
+                {
+                    prevNode = node;
+                    node = node.next;
+                }
             }
         }
 

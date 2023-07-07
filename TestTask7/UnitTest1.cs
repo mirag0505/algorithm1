@@ -361,6 +361,7 @@ public class UnitTestTask7
         Assert.Equal(1, orderedList.Find(1).value);
         Assert.Equal(2, orderedList.Find(2).value);
         Assert.Equal(3, orderedList.Find(3).value);
+        Assert.Equal(orderedList.tail, orderedList.Find(3));
 
         orderedList.Delete(1);
         Assert.Null(orderedList.Find(1));
@@ -377,6 +378,62 @@ public class UnitTestTask7
         var orderedList2 = new OrderedList<int>(false);
         orderedList2.Add(1);
         orderedList2.Add(2);
+        orderedList2.Add(2);
         orderedList2.Add(3);
+        Assert.Equal("3,2,2,1", orderedList2.GetStringListsValue());
+
+        orderedList2.Delete(2);
+        Assert.Equal("3,2,1", orderedList2.GetStringListsValue());
+    }
+
+    [Fact]
+    public void TestDelete_string()
+    {
+        var orderedList = new OrderedList<string>(false);
+        Assert.Null(orderedList.Find("4"));
+
+        orderedList.Add("1");
+        orderedList.Add("3");
+        orderedList.Add("2");
+
+        Assert.Equal(orderedList.tail, orderedList.Find("1"));
+        Assert.Equal("1", orderedList.Find("1").value);
+        Assert.Equal("2", orderedList.Find("2").value);
+        Assert.Equal("3", orderedList.Find("3").value);
+        Assert.Equal(orderedList.head, orderedList.Find("3"));
+
+        orderedList.Delete("1");
+        Assert.Null(orderedList.Find("1"));
+        Assert.Equal("3,2", orderedList.GetStringListsValue());
+
+        orderedList.Delete("2");
+        Assert.Null(orderedList.Find("2"));
+        Assert.Equal("3", orderedList.GetStringListsValue());
+
+        orderedList.Delete("3");
+        Assert.Null(orderedList.Find("3"));
+        Assert.Equal("", orderedList.GetStringListsValue());
+
+        var orderedList2 = new OrderedList<string>(false);
+        orderedList2.Add("1");
+        orderedList2.Add("3");
+        orderedList2.Add("2");
+        orderedList2.Add("4");
+
+        orderedList2.Delete("4");
+        Assert.Null(orderedList2.Find("4"));
+        Assert.Equal("3,2,1", orderedList2.GetStringListsValue());
+
+        orderedList2.Delete("1");
+        Assert.Null(orderedList2.Find("1"));
+        Assert.Equal("3,2", orderedList2.GetStringListsValue());
+
+        orderedList2.Delete("3");
+        orderedList2.Delete("2");
+        Assert.Null(orderedList2.Find("3"));
+        Assert.Null(orderedList2.Find("2"));
+        Assert.Equal("", orderedList2.GetStringListsValue());
+
+
     }
 }
