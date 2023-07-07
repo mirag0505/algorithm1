@@ -149,6 +149,7 @@ namespace AlgorithmsDataStructures
                         node.next.prev = prevNode;
                     }
 
+                    _size--;
                     return;
                 }
                 else
