@@ -131,7 +131,10 @@ namespace AlgorithmsDataStructures
                 {
                     if (this.head == this.tail)
                     {
-                        Clear(_ascending);
+                        head = null;
+                        tail = null;
+                        _size = 0;
+                        return;
                     }
                     else if (this.head == node)
                     {
