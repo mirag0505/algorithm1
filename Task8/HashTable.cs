@@ -76,12 +76,21 @@ namespace AlgorithmsDataStructures
 
         public int Find(string value)
         {
-            if (value == null) return -1;
             // находит индекс слота со значением, или -1
-            for (int i = 0; i < size; i++)
+            if (value == null) return -1;
+            int slotIndex = HashFun(value);
+
+            if (slots[slotIndex] == value) return slotIndex;
+
+            int i = slotIndex + step;
+            while (i != slotIndex)
             {
-                if (slots[i] == value) return i;
-            };
+                if (i < size && slots[i] == value) return i;
+
+                if (i >= size) i -= size;
+                else i += step;
+            }
+
             return -1;
         }
     }
