@@ -35,30 +35,24 @@ namespace AlgorithmsDataStructures
             // Мы можем, например, суммировать байты каждой строки, 
             // брать остаток от деления суммы на 128(длину),
             // и таким образом получать уникальный индекс.
+            if (value == null) return -1;
             byte[] bytes = Encoding.UTF8.GetBytes(value);
             int sum = GetByteSum(bytes);
-            int index = sum % size;
-            return index;
+            return sum % size;
         }
 
         public int SeekSlot(string value)
         {
+            if (value == null) return -1;
             int slotIndex = HashFun(value);
+
             if (slotIndex < 0) return -1;
-            if (slots[slotIndex] == null)
-            {
-                slots[slotIndex] = value;
-                return slotIndex;
-            };
+            if (slots[slotIndex] == null) return slotIndex;
 
             int i = slotIndex + step;
             while (i != slotIndex)
             {
-                if (i < size && slots[i] == null)
-                {
-                    slots[i] = value;
-                    return i;
-                }
+                if (i < size && slots[i] == null) return i;
 
                 if (i >= size) i -= size;
                 else i += step;
@@ -74,11 +68,15 @@ namespace AlgorithmsDataStructures
 
             // возвращается индекс слота или -1
             // если из-за коллизий элемент не удаётся разместить 
-            return SeekSlot(value);
+            if (value == null) return -1;
+            int indexFindedSlot = SeekSlot(value);
+            if (indexFindedSlot > -1) slots[indexFindedSlot] = value;
+            return indexFindedSlot;
         }
 
         public int Find(string value)
         {
+            if (value == null) return -1;
             // находит индекс слота со значением, или -1
             for (int i = 0; i < size; i++)
             {
