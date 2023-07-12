@@ -29,6 +29,7 @@ namespace AlgorithmsDataStructures
         public int HashFun(string key)
         {
             // всегда возвращает корректный индекс слота
+            if (key == null) return 0;
             byte[] bytes = Encoding.UTF8.GetBytes(key);
             int sum = GetByteSum(bytes);
             return sum % size;
@@ -39,7 +40,7 @@ namespace AlgorithmsDataStructures
             // возвращает true если ключ имеется,
             // иначе false
             int indexFindedSlot = HashFun(key);
-            return slots[indexFindedSlot] != null;
+            return slots[indexFindedSlot] == key;
         }
 
         public void Put(string key, T value)
