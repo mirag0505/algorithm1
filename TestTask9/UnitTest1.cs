@@ -29,14 +29,11 @@ public class UnitTest1
         NativeDictionary<object> nativeDictionary = new NativeDictionary<object>(17);
         nativeDictionary.Put("hellow", 4);
         nativeDictionary.Put("world", 3);
-        var result = nativeDictionary.IsKey("hellow");
-        Assert.True(result);
+        Assert.True(nativeDictionary.IsKey("hellow"));
         Assert.Equal(4, nativeDictionary.Get("hellow"));
-        var result1 = nativeDictionary.IsKey("world");
-        Assert.True(result1);
+        Assert.True(nativeDictionary.IsKey("world"));
         Assert.Equal(3, nativeDictionary.Get("world"));
-        var result2 = nativeDictionary.IsKey("ololol");
-        Assert.False(result2);
+        Assert.False(nativeDictionary.IsKey("ololol"));
         Assert.Null(nativeDictionary.Get("ololol"));
     }
 }

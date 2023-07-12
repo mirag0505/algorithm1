@@ -39,8 +39,7 @@ namespace AlgorithmsDataStructures
             // возвращает true если ключ имеется,
             // иначе false
             int indexFindedSlot = HashFun(key);
-            if (slots[indexFindedSlot] == null) return false;
-            else return true;
+            return slots[indexFindedSlot] != null;
         }
 
         public void Put(string key, T value)
