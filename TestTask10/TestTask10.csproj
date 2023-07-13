@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+   <ItemGroup>
+    <ProjectReference Include="../Task10/Task10.csproj" />
+  </ItemGroup>
+
 </Project>
