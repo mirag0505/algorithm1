@@ -61,11 +61,19 @@ namespace AlgorithmsDataStructures
         public PowerSet<T> Union(PowerSet<T> set2)
         {
             // объединение текущего множества и set2
+            PowerSet<T> set = new PowerSet<T>();
+
             for (int i = 0; i < set2.elements.Count; i++)
             {
-                this.Put(set2.elements[i]);
+                set.Put(set2.elements[i]);
             }
-            return this;
+
+            for (int i = 0; i < elements.Count; i++)
+            {
+                set.Put(elements[i]);
+            }
+
+            return set;
         }
 
         public PowerSet<T> Difference(PowerSet<T> set2)
@@ -73,11 +81,15 @@ namespace AlgorithmsDataStructures
             // разница текущего множества и set2
             PowerSet<T> set = new PowerSet<T>();
 
-            for (int i = 0; i < set2.elements.Count; i++)
+            for (int i = 0; i < elements.Count; i++)
             {
-                if (elements.Contains(set2.elements[i])) elements.Remove(set2.elements[i]);
+                if (!set2.Get(elements[i]))
+                {
+                    set.Put(elements[i]);
+                }
             }
-            return this;
+
+            return set;
         }
 
         public bool IsSubset(PowerSet<T> set2)
@@ -85,11 +97,10 @@ namespace AlgorithmsDataStructures
             // возвращает true, если set2 есть
             // подмножество текущего множества,
             // иначе false
-            for (int i = 0; i < set2.elements.Count; i++)
-            {
-                if (!elements.Contains(set2.elements[i])) return false;
-            }
-            return true;
+            int size = this.Size();
+            var union = this.Union(set2);
+
+            return union.Size() == size;
         }
     }
 }
