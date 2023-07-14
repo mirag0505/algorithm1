@@ -61,11 +61,11 @@ namespace AlgorithmsDataStructures
         public PowerSet<T> Union(PowerSet<T> set2)
         {
             // объединение текущего множества и set2
-            for (int i = 0; i < elements.Count; i++)
+            for (int i = 0; i < set2.elements.Count; i++)
             {
-                set2.Put(elements[i]);
+                this.Put(set2.elements[i]);
             }
-            return set2;
+            return this;
         }
 
         public PowerSet<T> Difference(PowerSet<T> set2)
